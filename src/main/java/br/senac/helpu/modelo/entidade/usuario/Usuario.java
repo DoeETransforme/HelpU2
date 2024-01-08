@@ -1,4 +1,4 @@
-package br.senac.helpu.modelo.entidade.usuario;
+	package br.senac.helpu.modelo.entidade.usuario;
  
 import java.io.Serializable;
 
@@ -10,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
- 
+
 import br.senac.helpu.modelo.entidade.contato.Contato;
  
 @Entity
@@ -26,16 +27,14 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Long id;
- 
 	@Column(name = "nome_usuario", length = 30, nullable = false, unique = true)
 	private String nome;
- 
 	@Column(name = "senha_usuario", length = 15, nullable = false)
 	private String senha;
- 
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Contato contato;
- 
+	@JoinColumn(name = "id_contato") 
+	Contato contato;
  
 	public Usuario() {
 	}

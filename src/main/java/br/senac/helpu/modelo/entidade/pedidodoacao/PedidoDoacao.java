@@ -2,6 +2,7 @@ package br.senac.helpu.modelo.entidade.pedidodoacao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 import br.senac.helpu.modelo.entidade.item.Item;
 import br.senac.helpu.modelo.entidade.ong.Ong;
@@ -41,11 +41,11 @@ public class PedidoDoacao implements Serializable {
 	@Column(name = "descricao_pedido_doacao", length = 150, nullable = false, unique = false)
 	private String descricao;
 	
-	@Column(name = "data_pedido_doacao", length = 10, nullable = false, unique = false)
-	private LocalDate data;
-	
 	@Enumerated ( EnumType.STRING)
 	private StatusPedido statuspedido;
+	
+	@Column(name = "data_pedido_doacao", length = 10, nullable = false, unique = false)
+	private LocalDate data;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_ong", nullable = false, unique = true)
@@ -59,19 +59,35 @@ public class PedidoDoacao implements Serializable {
 	
 	public PedidoDoacao() {}
 	
-	public PedidoDoacao(Long id, String titulo, String descricao, LocalDate data, StatusPedido statusPedido) {
+	public PedidoDoacao(Long id, String titulo, String descricao, StatusPedido statusPedido) {
 		setId(id);
-		setData(data);
-		setTitulo(titulo);
-		setDescricao(descricao);	
-		setStatusPedido(statusPedido);
-	}
-
-	public PedidoDoacao(String titulo, String descricao, LocalDate data, StatusPedido statusPedido) {
-		setData(data);
 		setTitulo(titulo);
 		setDescricao(descricao);
 		setStatusPedido(statusPedido);
+		itens = new ArrayList<>();
+	}
+
+	public PedidoDoacao(String titulo, String descricao, StatusPedido statusPedido) {
+		setTitulo(titulo);
+		setDescricao(descricao);
+		setStatusPedido(statusPedido);
+		itens = new ArrayList<>();
+	}
+	
+	public PedidoDoacao(String titulo, String descricao, StatusPedido statusPedido, LocalDate data) {
+		setTitulo(titulo);
+		setDescricao(descricao);
+		setStatusPedido(statusPedido);
+		this.data = data;
+		itens = new ArrayList<>();
+	}
+	public PedidoDoacao(String titulo, String descricao, StatusPedido statusPedido, LocalDate data, Ong ong) {
+		setTitulo(titulo);
+		setDescricao(descricao);
+		setStatusPedido(statusPedido);
+		this.data = data;
+		this.ong = ong;
+		itens = new ArrayList<>();
 	}
 
 	public Long getId() {

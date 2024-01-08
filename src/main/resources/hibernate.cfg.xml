@@ -7,7 +7,7 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HelpU?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC&amp;useLegacyDatetimeCode=false;</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.password">Canalcauabra66</property>
 		<property name="show_sql">true</property>
 		
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
