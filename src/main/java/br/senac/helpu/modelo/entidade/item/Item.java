@@ -34,15 +34,15 @@ public class Item implements Serializable {
 	private int quantidade;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
+	@JoinColumn(name = "id_pedido_doacao", insertable = false, updatable = false)
 	private PedidoDoacao pedidoDoacao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
+	@JoinColumn(name = "id_proposta_doacao", insertable = false, updatable = false)
 	private PropostaDoacao propostaDoacao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_alimento")
+	@JoinColumn(name = "id_alimento", insertable = false, updatable = false)
 	private Alimento alimento;
 	
 
